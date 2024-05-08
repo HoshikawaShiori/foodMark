@@ -21,6 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mapbox.android.gestures.MoveGestureDetector;
 import com.mapbox.geojson.Point;
 import com.mapbox.maps.CameraOptions;
+import com.mapbox.maps.ImageHolder;
 import com.mapbox.maps.MapView;
 import com.mapbox.maps.Style;
 import com.mapbox.maps.plugin.LocationPuck2D;
@@ -98,7 +99,7 @@ public class addMark extends AppCompatActivity {
                 LocationComponentPlugin locationComponentPlugin = getLocationComponent(mapView);
                 locationComponentPlugin.setEnabled(true);
                 LocationPuck2D locationPuck2D = new LocationPuck2D();
-//                locationPuck2D.setBearingImage(AppCompatResources.getDrawable(addMark.this, R.drawable.baseline_location_on_24));
+                locationPuck2D.setBearingImage(ImageHolder.from(R.drawable.baseline_location_on_24));
                 locationComponentPlugin.setLocationPuck(locationPuck2D);
                 locationComponentPlugin.addOnIndicatorBearingChangedListener(onIndicatorBearingChangedListener);
                 locationComponentPlugin.addOnIndicatorPositionChangedListener(onIndicatorPositionChangedListener);
