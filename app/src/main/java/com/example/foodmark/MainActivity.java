@@ -1,6 +1,10 @@
 package com.example.foodmark;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -28,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TextView counter;
     private locAdapter adapter;
+    private Button btnAdd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +49,17 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new locAdapter(this, items);
         recyclerView.setAdapter(adapter);
+        btnAdd= findViewById(R.id.btnAdd);
 
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.d("Food Mark", "Button clicked!");
+                Intent activityChangeIntent = new Intent(MainActivity.this, addMark.class);
+                MainActivity.this.startActivity(activityChangeIntent);
+
+            }
+
+        });
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -62,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
                 // Handle error
             }
         });
+
+
 
 
     }
