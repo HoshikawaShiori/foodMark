@@ -8,13 +8,13 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/navBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/purple_300"
-        app:cardCornerRadius="36dp"
-        app:cardElevation="0dp">
+        app:shapeAppearance="@style/topNav"
+        app:cardElevation="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,7 +73,7 @@
 
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/textView4"
@@ -96,28 +96,29 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_addLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="@color/white"
-                android:fontFamily="@font/poppins"
-                android:text="+"
-                android:textColor="@color/purple_300"
-                android:textSize="20sp"
-                app:cornerRadius="30dp"
-                app:strokeColor="@color/purple_300"
-                app:strokeWidth="1sp" />
-
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip2"
+                android:id="@+id/addChip"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#00FFFFFF"
                 android:clickable="true"
                 android:fontFamily="@font/poppins"
+                android:text="+"
+                android:textColor="@color/material_dynamic_neutral40"
+                android:textSize="16sp"
+                app:chipStrokeColor="#6C60DF"
+                app:chipStrokeWidth="1dp"
+                app:rippleColor="#6C60DF" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#00FFFFFF"
+                android:clickable="true"
+                android:fontFamily="@font/poppins"
                 android:text="Fast Food"
+                android:textColor="@color/material_dynamic_neutral40"
                 android:textSize="16sp"
                 app:chipStrokeColor="#6C60DF"
                 app:chipStrokeWidth="1dp"
@@ -157,6 +158,7 @@
             android:layout_weight="0"
             android:drawableLeft="@drawable/baseline_bookmark_24"
             android:text="0"
+            android:textColor="@color/material_dynamic_neutral40"
             android:textSize="20sp" />
 
         <Button
@@ -169,6 +171,7 @@
             android:fontFamily="@font/poppins"
             android:text="Add place"
             android:textAllCaps="false"
+            android:textColor="#FEFEFE"
             android:textSize="12sp"
             app:cornerRadius="30dp" />
 

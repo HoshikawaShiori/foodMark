@@ -2,11 +2,14 @@ package com.example.foodmark;
 
 
 import static com.mapbox.maps.plugin.gestures.GesturesUtils.getGestures;
+import static com.mapbox.maps.plugin.locationcomponent.LocationComponentUtils.createDefault2DPuck;
 import static com.mapbox.maps.plugin.locationcomponent.LocationComponentUtils.getLocationComponent;
 
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultCallback;
@@ -17,6 +20,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.app.ActivityCompat;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mapbox.android.gestures.MoveGestureDetector;
 import com.mapbox.geojson.Point;
@@ -29,8 +34,11 @@ import com.mapbox.maps.plugin.gestures.OnMoveListener;
 import com.mapbox.maps.plugin.locationcomponent.LocationComponentPlugin;
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorBearingChangedListener;
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorPositionChangedListener;
+import com.mapbox.maps.plugin.compass.CompassPlugin;
 
 public class addMark extends AppCompatActivity {
+
+    private FrameLayout sheet;
     private MapView mapView;
     FloatingActionButton floatingActionButton;
 
@@ -83,24 +91,27 @@ public class addMark extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_mark);
+        sheet = findViewById(R.id.sheet);
+        BottomSheetBehavior<View> behavior = BottomSheetBehavior.from(sheet);
+        behavior.setPeekHeight(200);
+        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
         mapView = findViewById(R.id.mapView);
         floatingActionButton = findViewById(R.id.focusLocation);
 
-//        if (ActivityCompat.checkSelfPermission(addMark.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            activityResultLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION);
-//        }
 
         floatingActionButton.hide();
         mapView.getMapboxMap().loadStyleUri(Style.STANDARD, new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
+                LocationPuck2D puck2d=new LocationPuck2D();
                 mapView.getMapboxMap().setCamera(new CameraOptions.Builder().zoom(20.0).build());
                 LocationComponentPlugin locationComponentPlugin = getLocationComponent(mapView);
                 locationComponentPlugin.setEnabled(true);
-                LocationPuck2D locationPuck2D = new LocationPuck2D();
-                locationPuck2D.setBearingImage(ImageHolder.from(R.drawable.baseline_location_on_24));
-                locationComponentPlugin.setLocationPuck(locationPuck2D);
+                puck2d.setBearingImage(ImageHolder.from(R.drawable.puck2d));
+                locationComponentPlugin.setLocationPuck(puck2d);
+                locationComponentPlugin.setPuckBearingEnabled(true);
+                locationComponentPlugin.setPulsingEnabled(true);
                 locationComponentPlugin.addOnIndicatorBearingChangedListener(onIndicatorBearingChangedListener);
                 locationComponentPlugin.addOnIndicatorPositionChangedListener(onIndicatorPositionChangedListener);
                 getGestures(mapView).addOnMoveListener(onMoveListener);
