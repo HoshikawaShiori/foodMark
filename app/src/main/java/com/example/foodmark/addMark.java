@@ -9,6 +9,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -35,12 +37,16 @@ import com.mapbox.maps.plugin.locationcomponent.LocationComponentPlugin;
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorBearingChangedListener;
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorPositionChangedListener;
 import com.mapbox.maps.plugin.compass.CompassPlugin;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class addMark extends AppCompatActivity {
 
     private FrameLayout sheet;
     private MapView mapView;
-    FloatingActionButton floatingActionButton;
+    private FloatingActionButton floatingActionButton;
+    private EditText addTitle, addLocation, addDescription;
+    private DatabaseReference mDatabase;
 
 
     private final ActivityResultLauncher<String> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), new ActivityResultCallback<Boolean>() {
@@ -98,6 +104,10 @@ public class addMark extends AppCompatActivity {
 
         mapView = findViewById(R.id.mapView);
         floatingActionButton = findViewById(R.id.focusLocation);
+        addTitle = findViewById(R.id.addTitle);
+        addLocation = findViewById(R.id.addLocation);
+        addDescription = findViewById(R.id.addDescription);
+        Button addButton = findViewById(R.id.button);
 
 
         floatingActionButton.hide();
@@ -127,5 +137,35 @@ public class addMark extends AppCompatActivity {
                 });
             }
         });
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("items");
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String title = addTitle.getText().toString().trim();
+                String location = addLocation.getText().toString().trim();
+                String description = addDescription.getText().toString().trim();
+
+                if (title.isEmpty() || location.isEmpty() || description.isEmpty()) {
+                    Toast.makeText(addMark.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Item item = new Item(title, location, description);
+
+                String itemId = mDatabase.push().getKey(); // Generate unique key for item
+                if (itemId != null) {
+                    mDatabase.child(itemId).setValue(item);
+                    Toast.makeText(addMark.this, "Foodmark added successfully", Toast.LENGTH_SHORT).show();
+                    addTitle.getText().clear();
+                    addLocation.getText().clear();
+                    addDescription.getText().clear();
+                } else {
+                    Toast.makeText(addMark.this, "Failed to add Foodmark", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 }

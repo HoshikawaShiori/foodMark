@@ -31,7 +31,6 @@ public class locAdapter extends RecyclerView.Adapter<ViewHolder> {
         holder.name.setText(items.get(position).getName());
         holder.loc.setText(items.get(position).getLocation());
         holder.desc.setText(items.get(position).getDescription());
-        holder.imgView.setImageResource(items.get(position).getImage());
     }
 
     @Override

@@ -5,17 +5,17 @@ public class Item {
     String name;
     String location;
     String description;
-    int image;
+
 
     public Item() {
-        this("", "", "", 0);
+        this("", "", "");
     }
 
-    public Item(String name, String location, String description, int image) {
+    public Item(String name, String location, String description) {
         this.name = name;
         this.location = location;
         this.description = description;
-        this.image = image;
+
     }
 
     public String getName() {
@@ -42,12 +42,5 @@ public class Item {
         this.description = description;
     }
 
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
-        this.image = image;
-    }
 
 }
