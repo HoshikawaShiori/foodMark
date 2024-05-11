@@ -3,19 +3,21 @@ package com.example.foodmark;
 public class Item {
 
     String name;
-    String Location;
-    String Description;
+    String location;
+    String description;
     int image;
 
     public Item() {
+        this("", "", "", 0);
     }
 
     public Item(String name, String location, String description, int image) {
         this.name = name;
-        Location = location;
-        Description = description;
+        this.location = location;
+        this.description = description;
         this.image = image;
     }
+
     public String getName() {
         return name;
     }
@@ -25,19 +27,19 @@ public class Item {
     }
 
     public String getLocation() {
-        return Location;
+        return location;
     }
 
     public void setLocation(String location) {
-        Location = location;
+        this.location = location;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public int getImage() {
@@ -47,6 +49,5 @@ public class Item {
     public void setImage(int image) {
         this.image = image;
     }
-
 
 }
