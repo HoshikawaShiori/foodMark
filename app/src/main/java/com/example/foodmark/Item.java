@@ -8,10 +8,12 @@ public class Item {
     String title;
 
     String location;
-   String latitude;
+    String latitude;
     String longitude;
     String description;
     String category;
+
+    public Item() {}
 
     public Item(String locationImage, String title, String location, String latitude, String longitude, String description, String category) {
         this.locationImage = locationImage;

@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ViewHolder extends RecyclerView.ViewHolder {
 
     ImageView imgView;
-    TextView name, loc, desc, coords;
+    TextView name, loc, desc, coordinates;
     public ViewHolder(@NonNull @org.jetbrains.annotations.NotNull View itemView) {
         super(itemView);
 
         imgView= itemView.findViewById(R.id.image);
         name= itemView.findViewById(R.id.title);
-        coords= itemView.findViewById(R.id.txtCoords);
+        coordinates= itemView.findViewById(R.id.coords);
         loc= itemView.findViewById(R.id.location);
         desc = itemView.findViewById(R.id.description);
     }

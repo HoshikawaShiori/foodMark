@@ -1,0 +1,24 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="3dp"
+    android:backgroundTint="@android:color/transparent"
+    app:cardElevation="0dp">
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:backgroundTint="#00FFFFFF"
+        android:clickable="true"
+        android:fontFamily="@font/poppins"
+        android:text="Fast Food"
+        android:textColor="@color/material_dynamic_neutral40"
+        android:textSize="16sp"
+        app:chipStrokeColor="#6C60DF"
+        app:chipStrokeWidth="1dp"
+        app:rippleColor="#6C60DF" />
+
+</androidx.cardview.widget.CardView>

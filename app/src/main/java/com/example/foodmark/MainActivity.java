@@ -23,13 +23,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+     static List<String> itemKeys;
     private DatabaseReference mDatabase;
     private List<Item> items = new ArrayList<>();
     private RecyclerView recyclerView;
+    private RecyclerView catRecyclerView;
     private TextView counter;
     private locAdapter adapter;
+    private catAdapter catadapter;
     private Button btnAdd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,15 +40,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-
         mDatabase = FirebaseDatabase.getInstance().getReference("FoodMarks");
-
+        itemKeys = new ArrayList<>();
         recyclerView = findViewById(R.id.recyclerItems);
         counter = findViewById(R.id.txtCount);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         adapter = new locAdapter(this, items);
         recyclerView.setAdapter(adapter);
+
+        catRecyclerView= findViewById(R.id.recyclerCat);
+        catRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        catadapter = new catAdapter(this, items);
+        catRecyclerView.setAdapter(catadapter);
+
         btnAdd= findViewById(R.id.btnAdd);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -64,9 +71,11 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Item item = snapshot.getValue(Item.class);
                     items.add(item);
+                    itemKeys.add(snapshot.getKey());
                 }
                 counter.setText(Integer.toString(items.size()));
                 adapter.notifyDataSetChanged();
+                catadapter.notifyDataSetChanged();
             }
 
             @Override

@@ -96,33 +96,17 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/addChip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#00FFFFFF"
-                android:clickable="true"
-                android:fontFamily="@font/poppins"
-                android:text="+"
-                android:textColor="@color/material_dynamic_neutral40"
-                android:textSize="16sp"
-                app:chipStrokeColor="#6C60DF"
-                app:chipStrokeWidth="1dp"
-                app:rippleColor="#6C60DF" />
 
-            <com.google.android.material.chip.Chip
+            <com.google.android.material.chip.ChipGroup
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#00FFFFFF"
-                android:clickable="true"
-                android:fontFamily="@font/poppins"
-                android:text="Fast Food"
-                android:textColor="@color/material_dynamic_neutral40"
-                android:textSize="16sp"
-                app:chipStrokeColor="#6C60DF"
-                app:chipStrokeWidth="1dp"
-                app:rippleColor="#6C60DF" />
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerCat"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.google.android.material.chip.ChipGroup>
+
         </LinearLayout>
     </ScrollView>
 
