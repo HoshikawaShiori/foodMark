@@ -10,9 +10,6 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -54,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("Food Mark", "Button clicked!");
-                Intent activityChangeIntent = new Intent(MainActivity.this, addMark.class);
+                Intent activityChangeIntent = new Intent(MainActivity.this, addFoodMark.class);
                 MainActivity.this.startActivity(activityChangeIntent);
 
             }

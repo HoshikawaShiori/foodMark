@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     id("com.google.gms.google-services")
+    alias(libs.plugins.jetbrainsKotlinAndroid)
 }
 
 android {
@@ -35,6 +36,9 @@ android {
     buildFeatures{
         viewBinding = true;
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -47,6 +51,7 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview-selection:1.1.0")
     implementation(libs.firebase.database)
     implementation("com.mapbox.maps:android:11.3.1")
+    implementation(libs.core.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
