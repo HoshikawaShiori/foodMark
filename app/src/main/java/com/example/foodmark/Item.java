@@ -1,29 +1,42 @@
 package com.example.foodmark;
 
+import com.mapbox.geojson.GeoJson;
+
 public class Item {
 
-    String name;
+    String locationImage;
+    String title;
+
     String location;
+   String latitude;
+    String longitude;
     String description;
+    String category;
 
-
-    public Item() {
-        this("", "", "");
-    }
-
-    public Item(String name, String location, String description) {
-        this.name = name;
+    public Item(String locationImage, String title, String location, String latitude, String longitude, String description, String category) {
+        this.locationImage = locationImage;
+        this.title = title;
         this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.description = description;
-
+        this.category = category;
     }
 
-    public String getName() {
-        return name;
+    public String getLocationImage() {
+        return locationImage;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLocationImage(String locationImage) {
+        this.locationImage = locationImage;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getLocation() {
@@ -34,6 +47,22 @@ public class Item {
         this.location = location;
     }
 
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -42,5 +71,11 @@ public class Item {
         this.description = description;
     }
 
+    public String getCategory() {
+        return category;
+    }
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
 }

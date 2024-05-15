@@ -72,7 +72,44 @@
                     android:textAlignment="center"
                     android:textColor="@color/white" />
 
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/addGallery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:backgroundTint="@color/purple_200"
+                        android:drawableLeft="@drawable/baseline_image_search_24"
+                        android:fontFamily="@font/poppins_bold"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        android:text="Get Image From Gallery"
+                        android:textAllCaps="false"
+                        android:textColor="#FEFEFEFE"
+                        android:textSize="12sp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/addCamera"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/purple_200"
+                        android:drawableLeft="@drawable/baseline_camera_alt_24"
+                        android:fontFamily="@font/poppins_bold"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        android:text="Use Camera"
+                        android:textAllCaps="false"
+                        android:textColor="#FEFEFEFE"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
                 <TextView
+
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -97,6 +134,15 @@
                     android:text="Location"
                     android:textColor="#FFEDEDED" />
 
+                <TextView
+                    android:id="@+id/txtCoords"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="coordinates"
+                    android:textColor="#CAC2C2"
+                    android:textSize="10sp" />
+
                 <EditText
                     android:id="@+id/addLocation"
                     android:layout_width="match_parent"
@@ -115,6 +161,22 @@
 
                 <EditText
                     android:id="@+id/addDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Category"
+                    android:textColor="#FFEDEDED" />
+
+                <EditText
+                    android:id="@+id/addCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"

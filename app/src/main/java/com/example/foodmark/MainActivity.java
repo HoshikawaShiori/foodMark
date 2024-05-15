@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("items");
+        mDatabase = FirebaseDatabase.getInstance().getReference("FoodMarks");
 
         recyclerView = findViewById(R.id.recyclerItems);
         counter = findViewById(R.id.txtCount);
