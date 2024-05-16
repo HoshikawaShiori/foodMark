@@ -6,16 +6,16 @@ public class Item {
 
     String locationImage;
     String title;
-
     String location;
     String latitude;
     String longitude;
     String description;
     String category;
+    String id;
 
     public Item() {}
 
-    public Item(String locationImage, String title, String location, String latitude, String longitude, String description, String category) {
+    public Item(String locationImage, String title, String location, String latitude, String longitude, String description, String category, String id) {
         this.locationImage = locationImage;
         this.title = title;
         this.location = location;
@@ -23,7 +23,9 @@ public class Item {
         this.longitude = longitude;
         this.description = description;
         this.category = category;
+        this.id = id;
     }
+
 
     public String getLocationImage() {
         return locationImage;
@@ -80,4 +82,14 @@ public class Item {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
 }

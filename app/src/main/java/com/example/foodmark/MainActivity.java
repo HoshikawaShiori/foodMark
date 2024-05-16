@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-     static List<String> itemKeys;
+
     private DatabaseReference mDatabase;
     private List<Item> items = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         mDatabase = FirebaseDatabase.getInstance().getReference("FoodMarks");
-        itemKeys = new ArrayList<>();
         recyclerView = findViewById(R.id.recyclerItems);
         counter = findViewById(R.id.txtCount);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -71,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Item item = snapshot.getValue(Item.class);
                     items.add(item);
-                    itemKeys.add(snapshot.getKey());
                 }
                 counter.setText(Integer.toString(items.size()));
                 adapter.notifyDataSetChanged();

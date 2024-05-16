@@ -1,10 +1,8 @@
 package com.example.foodmark
 
 import android.app.Activity
-import android.content.ClipData
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -17,7 +15,6 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -37,7 +34,6 @@ import com.mapbox.maps.plugin.LocationPuck2D
 import com.mapbox.maps.plugin.annotation.AnnotationConfig
 import com.mapbox.maps.plugin.annotation.AnnotationPlugin
 import com.mapbox.maps.plugin.annotation.annotations
-import com.mapbox.maps.plugin.annotation.generated.PointAnnotation
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationManager
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions
 import com.mapbox.maps.plugin.annotation.generated.createPointAnnotationManager
@@ -56,7 +52,7 @@ class addFoodMark: AppCompatActivity() {
     private var addCamera:Button? = null
     private var addLocation:EditText? = null
     private var addDescription:EditText? = null
-    private var category:EditText? = null
+    private var addCategory:EditText? = null
     private var mDatabase: DatabaseReference? = null
     private var annotations = mutableListOf<PointAnnotationOptions>()
     private var annotationApi: AnnotationPlugin? = null
@@ -149,7 +145,7 @@ class addFoodMark: AppCompatActivity() {
         addGallery= findViewById<Button>(R.id.addGallery)
         addCamera= findViewById<Button>(R.id.addCamera)
         Coords = findViewById<TextView>(R.id.txtCoords)
-        category = findViewById<EditText>(R.id.addCategory)
+        addCategory = findViewById<EditText>(R.id.addCategory)
         val addButton: Button = findViewById<Button>(R.id.button)
 
 
@@ -222,7 +218,7 @@ class addFoodMark: AppCompatActivity() {
         val long = coordinate?.longitude().toString()
         val lat = coordinate?.latitude().toString()
         val description = addDescription!!.text.toString().trim { it <= ' ' }
-        val category = category!!.text.toString().trim { it <= ' ' }
+        val category = addCategory!!.text.toString().trim { it <= ' ' }
 
         // Check if all fields are filled
         if (title.isEmpty() || location.isEmpty() || coordinate == null || description.isEmpty() || category.isEmpty() || locImage == null) {
@@ -230,18 +226,25 @@ class addFoodMark: AppCompatActivity() {
             return
         }
 
-        val item = Item(locationImage, title, location, lat, long, description, category)
 
         val itemId = mDatabase!!.push().key // Generate unique key for item
         if (itemId != null) {
+            val item:Item = Item(locationImage, title, location, lat, long, description, category, itemId)
             mDatabase!!.child(itemId).setValue(item)
-            Toast.makeText(this@addFoodMark, "Foodmark added successfully", Toast.LENGTH_SHORT)
-                .show()
-            addTitle!!.text.clear()
-            addLocation!!.text.clear()
-            addDescription!!.text.clear()
+                .addOnSuccessListener {
+                    Toast.makeText(this@addFoodMark, "Foodmark added successfully", Toast.LENGTH_SHORT).show()
+                    addTitle!!.text.clear()
+                    addLocation!!.text.clear()
+                    addDescription!!.text.clear()
+                    addCategory!!.text.clear()
+
+                    finish()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this@addFoodMark, "Failed to add Foodmark", Toast.LENGTH_SHORT).show()
+                }
         } else {
-            Toast.makeText(this@addFoodMark, "Failed to add Foodmark", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@addFoodMark, "Failed to generate unique key for Foodmark", Toast.LENGTH_SHORT).show()
         }
     }
     private fun createAnnotation(point: Point){

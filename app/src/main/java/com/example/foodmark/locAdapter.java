@@ -3,6 +3,7 @@ package com.example.foodmark;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -42,11 +43,15 @@ public class locAdapter extends RecyclerView.Adapter<ViewHolder> {
                 int position = viewHolder.getAdapterPosition();
                 new AlertDialog.Builder(context)
                         .setTitle("Delete Item")
-                        .setMessage("Are you sure you want to delete this item?")
+                        .setMessage("Are you sure you want to delete " + items.get(position).getTitle()+ "?")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
+                                String itemId = items.get(position).getId();
+
+                                DatabaseReference itemRef = FirebaseDatabase.getInstance().getReference("FoodMarks").child(itemId);
+                                itemRef.removeValue();
+
                                 items.remove(position);
-                                deleteItem(position);
                                 notifyItemRemoved(position);
                             }
                         })
@@ -71,6 +76,21 @@ public class locAdapter extends RecyclerView.Adapter<ViewHolder> {
         holder.coordinates.setText(items.get(position).getLongitude() + ", " + items.get(position).getLatitude());
         holder.loc.setText(items.get(position).getLocation());
         holder.desc.setText(items.get(position).getDescription());
+
+        // Set an OnClickListener to the item view
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an Intent to start the showFoodMark activity
+                Intent intent = new Intent(context, showFoodMark.class);
+
+                // Pass the id of the clicked item to the showFoodMark activity
+                intent.putExtra("itemId", items.get(position).getId());
+
+                // Start the showFoodMark activity
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -79,9 +99,5 @@ public class locAdapter extends RecyclerView.Adapter<ViewHolder> {
         Log.d("locAdapter", "getItemCount: " + items.size());
         return items.size();
     }
-    private void deleteItem(int position) {
-        String itemKey = MainActivity.itemKeys.get(position); // get the key of the item
-        DatabaseReference itemRef = FirebaseDatabase.getInstance().getReference("FoodMarks").child(itemKey);
-        itemRef.removeValue();
-    }
+
 }
