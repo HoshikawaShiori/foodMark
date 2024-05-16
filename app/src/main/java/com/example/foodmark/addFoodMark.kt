@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.mapbox.android.gestures.MoveGestureDetector
@@ -51,7 +52,7 @@ class addFoodMark: AppCompatActivity() {
     private var addGallery:Button? = null
     private var addCamera:Button? = null
     private var addLocation:EditText? = null
-    private var addDescription:EditText? = null
+    private var addDescription:TextInputEditText? = null
     private var addCategory:EditText? = null
     private var mDatabase: DatabaseReference? = null
     private var annotations = mutableListOf<PointAnnotationOptions>()
@@ -141,7 +142,7 @@ class addFoodMark: AppCompatActivity() {
         floatingActionButton = findViewById<FloatingActionButton>(R.id.focusLocation)
         addTitle = findViewById<EditText>(R.id.addTitle)
         addLocation = findViewById<EditText>(R.id.addLocation)
-        addDescription = findViewById<EditText>(R.id.addDescription)
+        addDescription = findViewById<TextInputEditText>(R.id.addDescription)
         addGallery= findViewById<Button>(R.id.addGallery)
         addCamera= findViewById<Button>(R.id.addCamera)
         Coords = findViewById<TextView>(R.id.txtCoords)
@@ -235,7 +236,7 @@ class addFoodMark: AppCompatActivity() {
                     Toast.makeText(this@addFoodMark, "Foodmark added successfully", Toast.LENGTH_SHORT).show()
                     addTitle!!.text.clear()
                     addLocation!!.text.clear()
-                    addDescription!!.text.clear()
+                    addDescription!!.text!!.clear()
                     addCategory!!.text.clear()
 
                     finish()

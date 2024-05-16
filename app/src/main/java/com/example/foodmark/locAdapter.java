@@ -100,4 +100,8 @@ public class locAdapter extends RecyclerView.Adapter<ViewHolder> {
         return items.size();
     }
 
+    public void updateItems(List<Item> newItems) {
+        this.items = newItems;
+        notifyDataSetChanged();
+    }
 }

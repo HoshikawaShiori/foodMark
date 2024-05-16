@@ -159,13 +159,25 @@
                     android:text="Description"
                     android:textColor="#FFEDEDED" />
 
-                <EditText
-                    android:id="@+id/addDescription"
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/addDescriptionLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
                     android:ems="10"
                     android:inputType="text"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    app:boxBackgroundColor="@color/purple_300"
+                    app:boxBackgroundMode="outline">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/addDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:paddingTop="10dp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/textView8"

@@ -94,18 +94,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:overScrollMode="ifContentScrolls">
 
 
             <com.google.android.material.chip.ChipGroup
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerCat"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </com.google.android.material.chip.ChipGroup>
+                android:id="@+id/catGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:overScrollMode="ifContentScrolls"
+                android:scrollbarStyle="outsideInset"
+                app:singleSelection="true" />
 
         </LinearLayout>
     </ScrollView>

@@ -94,7 +94,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:backgroundTint="@android:color/transparent"
-                        android:scaleType="center"
+                        android:scaleType="fitCenter"
                         tools:srcCompat="@tools:sample/backgrounds/scenic" />
                 </androidx.cardview.widget.CardView>
 
