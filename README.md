@@ -16,7 +16,7 @@ git clone https://github.com/25Kanon/FoodMark.git
 ```
 
 # Configuration
-Ensure to add your own developer-config.xml file in the app/src/main/res/values/ directory. This file should contain your Mapbox access token and other configuration details.
+Ensure to add your own developer-config.xml file in the app/src/main/res/values/ directory, and MAPBOX_DOWNLOADS_TOKEN in your gradle.properties. This file should contain your Mapbox access token and other configuration details.
 
 # Running
 To run the application, you need an Android device or emulator with API level 21 (Android 5.0) or higher.
